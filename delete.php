@@ -1,0 +1,9 @@
+<?php
+require("main.php");
+if(isset($_GET['iddelete']))
+	{
+		$iddelete=$_GET['iddelete'];
+		$table="tbl_products";
+		$obj->deleteall($table,$iddelete);
+	}
+?>
