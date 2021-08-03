@@ -23,6 +23,9 @@ $value="user_id='$user_id'";
 $obj->updateallinvitation($table,$fields,$value);
       header("LOCATION:pay.php?checkout=automatic");   
   }
+
+
+  
 ?>
 <?php
 require("user_header.php");
@@ -275,12 +278,13 @@ $sql="SELECT * FROM tbl_products";
 			}
 			else
 			{
-				?>
-			<a class="nile-bottom layout-2" href="template.information.php?templat_key=<?php echo $row['product_key']?>">Create Page</a>
-				<!----<button type="button"  data-toggle="modal" data-target="#staticBackdrop" class="nile-bottom layout-2" style="font-weight: normal;text-transform: uppercase;" name="purchase">
-				Submit Info
-			    </button>---->
-				<?php
+				//check user fill up from 
+				$fromFillUpSQL = mysqli_query($con, "SELECT * FROM `tamplate_info` WHERE user_id='{$_SESSION['isloginid']}'");
+				if(mysqli_num_rows($fromFillUpSQL) > 0 ){
+						echo $purches = '<input type="submit" class="nile-bottom layout-2" value="Purchase" name="purchase">';
+				}else{
+						echo $purches = '<a class="nile-bottom layout-2" href="template.information.php?templat_key='.$row['product_key'].'">Create Page</a>';
+				}
 			}
 			?>
                 </form>

@@ -1,38 +1,45 @@
 <?php 
 require("session.php");
-include('config.php');
+require("config.php");
+if(isset($_GET['templat_key'] )){
+	$tmp_id = $_GET['templat_key'];
+}else{
+ $tmp_msg = "<div class='alert alert-danger'><strong>Don not select any demo.</strong> Please select demo first....!</div>";
+}
     if(isset($_POST["submit_info"]) ){
         $img_dir = "wedding/info-img/";
-
+		$rand = rand(0000, 9999);
+		$tmp_id = $_GET['templat_key'];
+		echo $rec = $_POST['rec'];
        $g_name = mysqli_real_escape_string($con, $_POST["g_name"]);
-       $b_name = mysqli_real_escape_string($con, $_POST["b_name"]);
-       $m_data = mysqli_real_escape_string($con, $_POST["m_data"]);
-       $m_time = mysqli_real_escape_string($con, $_POST["m_time"]);
-       $m_day = mysqli_real_escape_string($con, $_POST["m_day"]);
-       $m_veu = mysqli_real_escape_string($con, $_POST["m_veu"]);
+	   $b_name = mysqli_real_escape_string($con, $_POST["b_name"]);
+	   $m_data = mysqli_real_escape_string($con, $_POST["m_data"]);
+	   $m_time = mysqli_real_escape_string($con, $_POST["m_time"]);
+	   $m_day = mysqli_real_escape_string($con, $_POST["m_day"]);
+	   $m_veu = mysqli_real_escape_string($con, $_POST["m_veu"]);
      
-       $r_date = mysqli_real_escape_string($con, $_POST["r_date"]);
-       $r_time = mysqli_real_escape_string($con, $_POST["r_time"]);
-       $r_veu = mysqli_real_escape_string($con, $_POST["r_veu"]);
-       $l_date = mysqli_real_escape_string($con, $_POST["l_date"]);
-       $l_time = mysqli_real_escape_string($con, $_POST["l_time"]);
-       $l_veu = mysqli_real_escape_string($con, $_POST["l_veu"]);
-       $grom_father_name = mysqli_real_escape_string($con, $_POST["grom_father_name"]);
-       $grom_mother_name = mysqli_real_escape_string($con, $_POST["grom_mother_name"]);
-       $bride_father_name = mysqli_real_escape_string($con, $_POST["bride_father_name"]);
-       $bride_mother_name = mysqli_real_escape_string($con, $_POST["bride_mother_name"]);
-       $email = mysqli_real_escape_string($con, $_POST["email"]);
-       $number = mysqli_real_escape_string($con, $_POST["number"]);
+	   $r_date = mysqli_real_escape_string($con, $_POST["r_date"]);
+	   $r_time = mysqli_real_escape_string($con, $_POST["r_time"]);
+	   $r_veu = mysqli_real_escape_string($con, $_POST["r_veu"]);
+	   $l_date = mysqli_real_escape_string($con, $_POST["l_date"]);
+	   $l_time = mysqli_real_escape_string($con, $_POST["l_time"]);
+	   $l_veu = mysqli_real_escape_string($con, $_POST["l_veu"]);
+	   $grom_father_name = mysqli_real_escape_string($con, $_POST["grom_father_name"]);
+	   $grom_mother_name = mysqli_real_escape_string($con, $_POST["grom_mother_name"]);
+	   $bride_father_name = mysqli_real_escape_string($con, $_POST["bride_father_name"]);
+	   $bride_mother_name = mysqli_real_escape_string($con, $_POST["bride_mother_name"]);
+	   $email = mysqli_real_escape_string($con, $_POST["email"]);
+	   $number = mysqli_real_escape_string($con, $_POST["number"]);
 
        //groom's img
-      $g_img_name = $_SESSION['isloginid'].'-'.$_FILES['g_img']['name'];
+	    $g_img_name = $_SESSION['isloginid'].'-'.$rand.$_FILES['g_img']['name'];
       $g_img_target = $_FILES['g_img']['tmp_name'];
       move_uploaded_file($g_img_target, $img_dir.$g_img_name);
       //end grooms img upload
        
 
          //bride's img
-         $b_img_name = $_SESSION['isloginid'].'-'.$_FILES['b_img']['name'];
+          $b_img_name = $_SESSION['isloginid'].'-'.$rand.$_FILES['b_img']['name'];
          $b_img_target = $_FILES['b_img']['tmp_name'];
          move_uploaded_file($b_img_target, $img_dir.$b_img_name);
          //end bride img upload
@@ -40,75 +47,98 @@ include('config.php');
 
 
      //groom father img
-      $grom_father_img_name = $_SESSION['isloginid'].'-'.$_FILES['grom_father_img']['name'];
+	  $grom_father_img_name = $_SESSION['isloginid'].'-'.$rand.$_FILES['grom_father_img']['name'];
       $grom_father_img_dir = $_FILES['grom_father_img']['tmp_name'];
       move_uploaded_file($grom_father_img_dir, $img_dir.$grom_father_img_name);
 //end groom mother img upload
-      $grom_mother_img_name = $_SESSION['isloginid'].'-'.$_FILES['bride_mother_img']['name'];
+ $grom_mother_img_name = $_SESSION['isloginid'].'-'.$rand.$_FILES['bride_mother_img']['name'];
       $grom_mother_img_dir = $_FILES['bride_mother_img']['tmp_name'];
       move_uploaded_file($grom_mother_img_dir, $img_dir.$grom_mother_img_name);
       //end grooms img upload
        
 
          //brideo father img
-         $bride_father_img_name = $_SESSION['isloginid'].'-'.$_FILES['bride_father_img']['name'];
+		   $bride_father_img_name = $_SESSION['isloginid'].'-'.$rand.$_FILES['bride_father_img']['name'];
          $bride_father_img_dri = $_FILES['bride_father_img']['tmp_name'];
          move_uploaded_file($bride_father_img_dri, $img_dir.$bride_father_img_name);
    //end groom mother img upload
-         $bride_mother_img_name = $_SESSION['isloginid'].'-'.$_FILES['bride_mother_img']['name'];
+    $bride_mother_img_name = $_SESSION['isloginid'].'-'.$_FILES['bride_mother_img']['name'];
          $bride_mother_img_dir = $_FILES['bride_mother_img']['tmp_name'];
          move_uploaded_file($grom_mother_img_dir, $img_dir.$grom_mother_img_name);
          //end grooms img upload
           
 
          //groom's img
-         $g_img_name = $_SESSION['isloginid'].'-'.$_FILES['g_img']['name'];
+          $g_img_name = $_SESSION['isloginid'].'-'.$rand.$_FILES['g_img']['name'];
          $g_img_target = $_FILES['g_img']['tmp_name'];
          move_uploaded_file($g_img_target, $img_dir.$g_img_name);
          //end grooms img upload
           
 
             //groom's img
-      $g_img_name = $_SESSION['isloginid'].'-'.$_FILES['g_img']['name'];
+			 $g_img_name = $_SESSION['isloginid'].'-'.$rand.$_FILES['g_img']['name'];
       $g_img_target = $_FILES['g_img']['tmp_name'];
       move_uploaded_file($g_img_target, $img_dir.$g_img_name);
       //end grooms img upload
        
 
-      //upload slider images
-        foreach($_FILES["slider_img"]["name"] as $slider_img_key=>$slider_img_value){
-           $slider_img_name = $_SESSION['isloginid'].'-'.$slider_img_value;
-           move_uploaded_file($_FILES["slider_img"]["tmp_name"][$slider_img_key], $img_dir.$slider_img_name);
-        }
+     //slider imgs
+	 $slider_img1 = $_SESSION['isloginid'].'-'.$rand.$_FILES['slider_img1']['name'];
+	 $slider_img1_target = $_FILES['slider_img1']['tmp_name'];
+	 move_uploaded_file($slider_img1_target, $img_dir.$slider_img1);
+	 //2
+	 $slider_img2 = $_SESSION['isloginid'].'-'.$rand.$_FILES['slider_img2']['name'];
+	 $slider_img2_target = $_FILES['slider_img2']['tmp_name'];
+	 move_uploaded_file($slider_img2_target, $img_dir.$slider_img2);
 
- //weeding images
- foreach($_FILES["wee_img"]["name"] as $wee_img_key=>$wee_img_value){
-    $wee_img_name = $_SESSION['isloginid'].'-'.$wee_img_value;
-    move_uploaded_file($_FILES["wee_img"]["tmp_name"][$wee_img_key], $img_dir.$wee_img_value);
- }
+
+	 //weeding imgs
+	 $wee_img1 = $_SESSION['isloginid'].'-'.$rand.$_FILES['wee_img1']['name'];
+	 $wee_img1_target = $_FILES['wee_img1']['tmp_name'];
+	 move_uploaded_file($wee_img1_target, $img_dir.$wee_img1);
+
+	 //2
+	$wee_img2 = $_SESSION['isloginid'].'-'.$rand.$_FILES['wee_img2']['name'];
+	 $wee_img2_target = $_FILES['wee_img2']['tmp_name'];
+	 move_uploaded_file($wee_img2_target, $img_dir.$wee_img2);
+	 //3
+	 $wee_img3 = $_SESSION['isloginid'].'-'.$rand.$_FILES['wee_img3']['name'];
+	 $wee_img3_target = $_FILES['wee_img3']['tmp_name'];
+	 move_uploaded_file($wee_img3_target, $img_dir.$wee_img3);
+	 //4
+	 $wee_img4 = $_SESSION['isloginid'].'-'.$rand.$_FILES['wee_img4']['name'];
+	 $wee_img4_target = $_FILES['wee_img4']['tmp_name'];
+	 move_uploaded_file($wee_img4_target, $img_dir.$wee_img4);
+	 //5
+	  $wee_img5 = $_SESSION['isloginid'].'-'.$rand.$_FILES['wee_img5']['name'];
+	 $wee_img5_target = $_FILES['wee_img5']['tmp_name'];
+	 move_uploaded_file($wee_img5_target, $img_dir.$wee_img5);
+
+
+
 
        
-       $user_id = $_SESSION['isloginid'];
-       if(isset($_GET['templat_key'] )){
-			 echo $tmp_id = $_GET['templat_key'];
-	   }else{
-		   $tmp_msg = "<div class='alert alert-danger'><strong>Don not select any demo.</strong> Please select demo first....!</div>";
-	   }
-	  
-	   $date = date("d-m-y");
+  $user_id = $_SESSION['isloginid'];
+
+     if(!empty($g_name) && !empty($g_img_name) && !empty($b_name) && !empty($b_img_name) && !empty($slider_img1) && !empty($slider_img2) && !empty($m_data) && !empty($m_time) && !empty($m_day) && !empty($m_veu) && !empty($rec) && !empty($r_date) && !empty($r_time) && !empty($l_date) && !empty($grom_father_img_name) && !empty($grom_mother_name) && !empty($wee_img4) && !empty($grom_father_name) && !empty($wee_img1) && !empty($wee_img2) && !empty($wee_img3) && !empty($wee_img4) && !empty($wee_img5) && !empty($email) && !empty($number) && !empty($user_id) && !empty($tmp_id)){
 
 
+	    $sql = "INSERT INTO `tamplate_info`( `g_name`, `g_img`, `b_name`, `b_img`, `slider_img1`, `slider_img2`, `m_date`, `m_time`, `m_day`, `m_vnu`, `reception`, `rec_date`, `rec_time`, `rec_ven`, `lunc_date`, `lunc_time`, `lunc_ven`, `wee_img1`, `wee_img2`, `wee_img3`, `wee_img4`, `wee_img5`, `family_g_father_name`, `family_g_father_img`, `family_g_mother_name`, `family_g_mother_img`, `family_b_father_name`, `family_b_father_img`, `family_b_mother_name`, `family_b_mother_img`, `email`, `phone`, `user_id`, `tem_id`, `status`) VALUES ( '$g_name', '$g_img_name', '$b_name', '$b_img_name', '$slider_img1', '$slider_img2', '$m_data', '$m_time', '$m_day', '$m_veu', '$rec', '$r_date', '$r_time', '$r_veu', '$l_date', '$l_time', '$l_veu', '$wee_img1', '$wee_img2','$wee_img3','$wee_img4', '$wee_img5', '$grom_father_name', '$grom_father_img_name', '$grom_mother_name', '$grom_mother_img_name', '$bride_father_name', '$bride_father_img_name', '$bride_mother_name', '$bride_mother_img_name', '$email', '$number', '$user_id', '$tmp_id', 'Active' )";
 
 	   //insert
-	   $sql = mysqli_query($con, "INSERT INTO `tamplate_info`(`g_name`, `g_img`, `b_name`, `b_img`, `slider_img`, `m_date`, `m_time`, `m_day`, `m_ven`, `reception`, `rec_date`, `rec_time`, `rec_ven`, `lunc_date`, `lunc_time`, `lunc_ven`, `per_wee_img`, `family_g_father_name`, `family_g_father_img`, `family_g_mother_name`, `family_g_mother_img`, `family_b_father_name`, `family_b_father_img`, `family_b_mother_name`, `family_b_mother_img`, `email`, `phone`, `user_id`, `tem_id`, `status`) 
-	   VALUES('$g_name',  '$g_img_name', '$b_name', '$b_img_name', '$slider_img_name', '$m_data', '$m_time', '$m_day', '$m_veu', 'yes', '$r_date', '$r_time', '$r_veu', '$l_date', '$l_time', '$l_veu', '$wee_img_name', '$grom_father_name', '$grom_father_img_name', '$grom_mother_name', '$grom_mother_img_name', '$bride_father_name', '$bride_father_img_name', '$bride_father_img_name', '$bride_mother_name', '$bride_mother_img_name', '$email', '$number', '$user_id', '$tmp_id', 'Active' ) ");
-	   if($sql == true){
-		   echo "success";
+	   $result = mysqli_query($con, $sql);
+
+	   if($result == true){
+			header("LOCATION:demo.php?form_fill_up=success&&user={$user_id}");   
 	   }else{
-		   echo "sumthing is worng";
+		   echo "worng";
 	   }
 
-       
+	}else{
+		$msg = "<div class='alert alert-danger'><strong>Error....</strong> Please Fill the all filde....!</div>";
+
+	}
+	  
     }//
 ?>
 
@@ -173,14 +203,16 @@ require("user_header.php");
 			small{
 				color: var(--red);
 			}
+			input{
+				width:100%;
+				margin:4px 0px;
+			}
 		</style>
                
         <div class="col-md-6 offset-md-3 mt-3">
-			<?php 
-				if(isset($tmp_msg) ){
-					echo $tmp_msg;
-				}
-			?>
+			<?php if(isset($tmp_msg))echo $tmp_msg;
+			if(isset($msg))echo $msg;?>
+			
             <div class="card card-body">
                 <form action="" method="post" enctype= multipart/form-data> 
                 <div class="form-group">
@@ -208,8 +240,16 @@ require("user_header.php");
 
 
 			<div class="form-group">
-				<label for="">Slider Images: </label>
-				<input type="file" name="slider_img[]" multiple>
+				<label for="">Upload Slider Images: </label>
+				<div class="row">
+					<div class="col-md-6">
+						<input type="file" name="slider_img1">
+					</div>
+					<div class="col-md-6">
+						<input type="file" name="slider_img2">
+					</div>
+				</div>
+				
 				<small>(Tow Images Only)</small>
 			</div>
 
@@ -289,8 +329,24 @@ require("user_header.php");
 
 
             <div class="form-group">
-				<label for="">Per Wedding Images: </label>
-				<input type="file" name="wee_img[]" multiple>
+				<label for="">Upload Five Wedding Images: </label>
+				<div class="row">
+					<div class="col-md-4">
+						<input syle="margin:3px 0px;width: 100%;" type="file" name="wee_img1">
+					</div>
+					<div class="col-md-4">
+						<input  syle="margin:3px 0px; width: 100%;" type="file" name="wee_img2">
+					</div>
+					<div class="col-md-4">
+						<input syle="margin:3px 0px;width: 100%;" type="file" name="wee_img3">
+					</div>
+					<div class="col-md-4">
+						<input syle="margin:3px 0px; width: 100%;" type="file" name="wee_img4">
+					</div>
+					<div class="col-md-4">
+						<input syle="margin:3px 0px; width: 100%;" type="file" name="wee_img5">
+					</div>
+				</div>
 				<small>(Five Images Only)</small>
 			</div>
 
