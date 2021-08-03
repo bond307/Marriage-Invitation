@@ -41,6 +41,10 @@ require("user_header.php");
 			padding: 0;
 			margin: 0;
 		}
+		label {
+			font-weight: 600;
+			font-size: 16px;
+		}
 
 		#logo2 {
 			text-align: center;
@@ -232,35 +236,37 @@ require("user_header.php");
 					<div class=" col-lg-12 col-md-12 col-sm-12 versions">
 						<div class="row">
           <?php
+		  $i=0;
 $sql="SELECT * FROM tbl_products";
     $result=mysqli_query($con,$sql)or die (mysqli_error($con));
     while($row=mysqli_fetch_array($result))
     {
+		$i++;
       ?>
           
-							<div class="col-lg-4 col-md-4 col-sm-6 col-12 version-choose">
-								<div class="demo"><a "<?php echo $row['product_image'] ; ?>"><img
-											src="<?php echo $row['product_image'] ; ?>" alt="wedding Invitation"></a></div>
-								<p><?php echo $row['name'] ; ?></p>
-				                <p><?php echo "₹"; echo  $row['price'] ; ?> </p>
-							 <p style="text-decoration: line-through;color:red"><?php echo "₹"; echo  $row['actual_price'] ; ?></p>
-				                <form method="post" action="">
-				                  <input type="hidden" name="name" value="<?php echo $row['name'] ;?>">
-				                  <input type="hidden" name="pname" value="<?php echo $row['product_image'] ;?>">
-				                  <input type="hidden" name="purl" value="<?php echo $row['url'] ;?>">
-				                  <input type="hidden" name="price" value="<?php echo $row['price'] ;?>">
-				                  <input type="hidden" name="invoice_no" value="<?php echo $value?>">
-    								<a target="_blank" href="<?php echo $row['url'] ; ?>" class="nile-bottom layout-2">View Demo</a>
-									<?php
-									
+<div class="col-lg-4 col-md-4 col-sm-6 col-12 version-choose">
+<div class="demo"><a "<?php echo $row['product_image'] ; ?>"><img
+			src="<?php echo $row['product_image'] ; ?>" alt="wedding Invitation"></a></div>
+<p><?php echo $row['name'] ; ?></p>
+<p><?php echo "₹"; echo  $row['price'] ; ?> </p>
+<p style="text-decoration: line-through;color:red"><?php echo "₹"; echo  $row['actual_price'] ; ?></p>
+<form method="post" action="">
+	<input type="hidden" name="name" value="<?php echo $row['name'] ;?>">
+	<input type="hidden" name="pname" value="<?php echo $row['product_image'] ;?>">
+	<input type="hidden" name="purl" value="<?php echo $row['url'] ;?>">
+	<input type="hidden" name="price" value="<?php echo $row['price'] ;?>">
+	<input type="hidden" name="invoice_no" value="<?php echo $value?>">
+	<a target="_blank" href="<?php echo $row['url'] ; ?>" class="nile-bottom layout-2">View Demo</a>
+	<?php
+	
 			$user_id=$_SESSION['isloginid'];
             $sql1="SELECT * FROM payment_details WHERE user_id='$user_id'";
             $result1=mysqli_query($con,$sql1)or die (mysqli_error($con));
-            $row=mysqli_fetch_array($result1);
+            $rows=mysqli_fetch_array($result1);
 									
 			?>
 			<?php
-			if($row['payment_status']==1) 
+			if($rows['payment_status']==1) 
 			{
 				?>
 			<a class="nile-bottom layout-2">Sorry! One user- One Order Only</a>
@@ -270,7 +276,10 @@ $sql="SELECT * FROM tbl_products";
 			else
 			{
 				?>
-				<input type="submit" class="nile-bottom layout-2" style="font-weight: normal;text-transform: uppercase;" name="purchase" value="Purchase">
+			<a class="nile-bottom layout-2" href="template.information.php?templat_key=<?php echo $row['product_key']?>">Create Page</a>
+				<!----<button type="button"  data-toggle="modal" data-target="#staticBackdrop" class="nile-bottom layout-2" style="font-weight: normal;text-transform: uppercase;" name="purchase">
+				Submit Info
+			    </button>---->
 				<?php
 			}
 			?>
@@ -303,3 +312,6 @@ function off() {
 <?php
 require("user_footer.php");
 ?>
+
+
+

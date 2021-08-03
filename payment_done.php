@@ -1,6 +1,7 @@
 <?php
 require("session.php");
 require("user_header.php");
+
 ?>
 
         <!-- Setting Panel -->
@@ -65,6 +66,7 @@ require("user_header.php");
                 </div>
                 <!-- /Title -->
 <p style='color:#c924c9;'>Payment Done Successfully.</p>
+
                 <!-- Row -->
                 <div class="row">
                     <div class="col-xl-12">
