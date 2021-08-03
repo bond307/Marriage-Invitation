@@ -92,44 +92,27 @@ if(isset($_GET['templat_key'] )){
 	 move_uploaded_file($slider_img2_target, $img_dir.$slider_img2);
 
 
-	 //weeding imgs
-	 $wee_img1 = $_SESSION['isloginid'].'-'.$rand.$_FILES['wee_img1']['name'];
-	 $wee_img1_target = $_FILES['wee_img1']['tmp_name'];
-	 move_uploaded_file($wee_img1_target, $img_dir.$wee_img1);
-
-	 //2
-	$wee_img2 = $_SESSION['isloginid'].'-'.$rand.$_FILES['wee_img2']['name'];
-	 $wee_img2_target = $_FILES['wee_img2']['tmp_name'];
-	 move_uploaded_file($wee_img2_target, $img_dir.$wee_img2);
-	 //3
-	 $wee_img3 = $_SESSION['isloginid'].'-'.$rand.$_FILES['wee_img3']['name'];
-	 $wee_img3_target = $_FILES['wee_img3']['tmp_name'];
-	 move_uploaded_file($wee_img3_target, $img_dir.$wee_img3);
-	 //4
-	 $wee_img4 = $_SESSION['isloginid'].'-'.$rand.$_FILES['wee_img4']['name'];
-	 $wee_img4_target = $_FILES['wee_img4']['tmp_name'];
-	 move_uploaded_file($wee_img4_target, $img_dir.$wee_img4);
-	 //5
-	  $wee_img5 = $_SESSION['isloginid'].'-'.$rand.$_FILES['wee_img5']['name'];
-	 $wee_img5_target = $_FILES['wee_img5']['tmp_name'];
-	 move_uploaded_file($wee_img5_target, $img_dir.$wee_img5);
-
-
+	foreach($_FILES['weed_img']['name'] as $key=>$weedImgVlu){
+	     	echo $weed_img_name = $_SESSION['isloginid'].'_'.$rand.$weedImgVlu.'-';
+			 $weed_img_names = $_SESSION['isloginid'].'_'.$rand.$weedImgVlu.',';
+			  $weed_img_names = trim($weed_img_names, ','); 
+			move_uploaded_file($_FILES['weed_img']['tmp_name'][$key], $img_dir.$weed_img_names);
+	}	
 
 
        
   $user_id = $_SESSION['isloginid'];
 
-     if(!empty($g_name) && !empty($g_img_name) && !empty($b_name) && !empty($b_img_name) && !empty($slider_img1) && !empty($slider_img2) && !empty($m_data) && !empty($m_time) && !empty($m_day) && !empty($m_veu) && !empty($rec) && !empty($r_date) && !empty($r_time) && !empty($l_date) && !empty($grom_father_img_name) && !empty($grom_mother_name) && !empty($wee_img4) && !empty($grom_father_name) && !empty($wee_img1) && !empty($wee_img2) && !empty($wee_img3) && !empty($wee_img4) && !empty($wee_img5) && !empty($email) && !empty($number) && !empty($user_id) && !empty($tmp_id)){
+     if(!empty($g_name) && !empty($g_img_name) && !empty($b_name) && !empty($b_img_name) && !empty($slider_img1) && !empty($slider_img2) && !empty($m_data) && !empty($m_time) && !empty($m_day) && !empty($m_veu) && !empty($rec) && !empty($l_date) && !empty($grom_father_img_name) && !empty($grom_mother_name) && !empty($grom_father_name) && !empty($email) && !empty($number) && !empty($user_id) && !empty($tmp_id) && !empty($weed_img_name) ){
 
 
-	    $sql = "INSERT INTO `tamplate_info`( `g_name`, `g_img`, `b_name`, `b_img`, `slider_img1`, `slider_img2`, `m_date`, `m_time`, `m_day`, `m_vnu`, `reception`, `rec_date`, `rec_time`, `rec_ven`, `lunc_date`, `lunc_time`, `lunc_ven`, `wee_img1`, `wee_img2`, `wee_img3`, `wee_img4`, `wee_img5`, `family_g_father_name`, `family_g_father_img`, `family_g_mother_name`, `family_g_mother_img`, `family_b_father_name`, `family_b_father_img`, `family_b_mother_name`, `family_b_mother_img`, `email`, `phone`, `user_id`, `tem_id`, `status`) VALUES ( '$g_name', '$g_img_name', '$b_name', '$b_img_name', '$slider_img1', '$slider_img2', '$m_data', '$m_time', '$m_day', '$m_veu', '$rec', '$r_date', '$r_time', '$r_veu', '$l_date', '$l_time', '$l_veu', '$wee_img1', '$wee_img2','$wee_img3','$wee_img4', '$wee_img5', '$grom_father_name', '$grom_father_img_name', '$grom_mother_name', '$grom_mother_img_name', '$bride_father_name', '$bride_father_img_name', '$bride_mother_name', '$bride_mother_img_name', '$email', '$number', '$user_id', '$tmp_id', 'Active' )";
+	    $sql = "INSERT INTO `tamplate_info`( `g_name`, `g_img`, `b_name`, `b_img`, `slider_img1`, `slider_img2`, `m_date`, `m_time`, `m_day`, `m_vnu`, `reception`, `rec_date`, `rec_time`, `rec_ven`, `lunc_date`, `lunc_time`, `lunc_ven`, `wee_imgs`, `family_g_father_name`, `family_g_father_img`, `family_g_mother_name`, `family_g_mother_img`, `family_b_father_name`, `family_b_father_img`, `family_b_mother_name`, `family_b_mother_img`, `email`, `phone`, `user_id`, `tem_id`, `status`) VALUES ( '$g_name', '$g_img_name', '$b_name', '$b_img_name', '$slider_img1', '$slider_img2', '$m_data', '$m_time', '$m_day', '$m_veu', '$rec', '$r_date', '$r_time', '$r_veu', '$l_date', '$l_time', '$l_veu', '$weed_img_name', '$grom_father_name', '$grom_father_img_name', '$grom_mother_name', '$grom_mother_img_name', '$bride_father_name', '$bride_father_img_name', '$bride_mother_name', '$bride_mother_img_name', '$email', '$number', '$user_id', '$tmp_id', 'Active' )";
 
 	   //insert
 	   $result = mysqli_query($con, $sql);
 
 	   if($result == true){
-			header("LOCATION:demo.php?form_fill_up=success&&user={$user_id}");   
+			 
 	   }else{
 		   echo "worng";
 	   }
@@ -217,7 +200,7 @@ require("user_header.php");
                 <form action="" method="post" enctype= multipart/form-data> 
                 <div class="form-group">
 				<label for="">Groom's Name: </label>
-				<input type="text" name="g_name" class="form-control">
+				<input type="text" name="g_name" class="form-control" value="<?php if(isset($g_name)) echo $g_name;?>">
 			</div>
 
 
@@ -229,7 +212,7 @@ require("user_header.php");
 
 			<div class="form-group">
 				<label for="">Bride's Name: </label>
-				<input type="text" name="b_name" class="form-control">
+				<input type="text" name="b_name" class="form-control" value="<?php if(isset($b_name)) echo $b_name;?>">
 			</div>
 
 
@@ -255,7 +238,7 @@ require("user_header.php");
 
 			<div class="form-group">
 				<label for="">Marriage Date: </label>
-				<input type="date" name="m_data" class="form-control">
+				<input type="date" name="m_data" class="form-control" value="<?php if(isset($m_data)) echo $m_data;?>">
 			</div>
 			<div class="form-group">
 				<label for="">Marriage Time: </label>
@@ -264,6 +247,10 @@ require("user_header.php");
 			<div class="form-group">
 				<label for="">Marriage Day: </label>
 				<select class="form-control" name="m_day">
+				<?php if(isset($m_day)) 
+				echo '<option value="'.$m_day.'" selected>'.$m_day.'</option>';
+				
+				?>
 					<option value="Saturday">Saturday</option>
 					<option value="Sunday">Sunday</option>
 					<option value="Monday">Monday</option>
@@ -276,7 +263,7 @@ require("user_header.php");
 			</div>
 			<div class="form-group">
 				<label for="">Marriage venue: </label>
-				<input type="text" name="m_veu" class="form-control" >
+				<input type="text" name="m_veu" class="form-control" value="<?php if(isset($m_veu)) echo $m_veu;?>">
 			</div>
 
 			<div class="form-group">
@@ -296,16 +283,16 @@ require("user_header.php");
 				  <div id="reception-input">
 					<div class="form-group">
 						<label for="">Reception Date: </label>
-						<input type="date" name="r_date" class="form-control">
+						<input type="date" name="r_date" class="form-control" value="<?php if(isset($r_date)) echo $r_date;?>">
 					</div>
 					<div class="form-group">
 						<label for="">Reception Time: </label>
-						<input type="time" name="r_time" class="form-control">
+						<input type="time" name="r_time" class="form-control" value="<?php if(isset($r_time)) echo $r_time;?>">
 					</div>
 				 
 					<div class="form-group">
 						<label for="">Reception venue: </label>
-						<input type="text" name="r_veu" class="form-control" >
+						<input type="text" name="r_veu" class="form-control"  value="<?php if(isset($r_veu)) echo $r_veu;?>">
 					</div>
 				</div>
 
@@ -314,39 +301,23 @@ require("user_header.php");
 
 			<div class="form-group">
 				<label for="">Lunch/Dinner Date: </label>
-				<input type="date" name="l_date" class="form-control">
+				<input type="date" name="l_date" class="form-control"  value="<?php if(isset($r_time)) echo $l_date;?>">
 			</div>
 			<div class="form-group">
 				<label for="">Lunch/Dinner Time: </label>
-				<input type="time" name="l_time" class="form-control">
+				<input type="time" name="l_time" class="form-control"  value="<?php if(isset($l_time)) echo $l_time;?>">
 			</div>
 			
 			<div class="form-group">
 				<label for="">Lunch/Dinner venue: </label>
-				<input type="text" name="l_veu" class="form-control" >
+				<input type="text" name="l_veu" class="form-control"  value="<?php if(isset($r_veu)) echo $r_veu;?>">
 			</div>
 
 
 
             <div class="form-group">
 				<label for="">Upload Five Wedding Images: </label>
-				<div class="row">
-					<div class="col-md-4">
-						<input syle="margin:3px 0px;width: 100%;" type="file" name="wee_img1">
-					</div>
-					<div class="col-md-4">
-						<input  syle="margin:3px 0px; width: 100%;" type="file" name="wee_img2">
-					</div>
-					<div class="col-md-4">
-						<input syle="margin:3px 0px;width: 100%;" type="file" name="wee_img3">
-					</div>
-					<div class="col-md-4">
-						<input syle="margin:3px 0px; width: 100%;" type="file" name="wee_img4">
-					</div>
-					<div class="col-md-4">
-						<input syle="margin:3px 0px; width: 100%;" type="file" name="wee_img5">
-					</div>
-				</div>
+				<input syle="margin:3px 0px;" type="file" name="weed_img[]" multiple>
 				<small>(Five Images Only)</small>
 			</div>
 
@@ -356,7 +327,7 @@ require("user_header.php");
 			<h3>Family's</h3>
 			<div class="form-group">
 				<label for="">Groom's Fother's Name: </label>
-				<input type="text" name="grom_father_name" class="form-control">
+				<input type="text" name="grom_father_name" class="form-control"  value="<?php if(isset($grom_father_name)) echo $grom_father_name;?>">
 			</div>
 			<div class="form-group">
 				<label for="">Groom's Fother's  Images: </label>
@@ -364,7 +335,7 @@ require("user_header.php");
 			</div>
 			<div class="form-group">
 				<label for="">Groom's Mother's Name: </label>
-				<input type="text" name="grom_mother_name" class="form-control">
+				<input type="text" name="grom_mother_name" class="form-control" value="<?php if(isset($grom_mother_name)) echo $grom_mother_name;?>">
 			</div>
 			<div class="form-group">
 				<label for="">Groom's Mother's  Images: </label>
@@ -374,19 +345,19 @@ require("user_header.php");
 		
 		<div id="more-family">
 		<div class="form-group">
-				<label for="">Bride's Father's Name: </label>
-				<input type="text" name="bride_father_name" class="form-control">
+				<label for="">Family Mamber's Name: </label>
+				<input type="text" name="bride_father_name" class="form-control" value="<?php if(isset($bride_father_name)) echo $bride_father_name;?>">
 			</div>
 			<div class="form-group">
-				<label for="">Bride's Father's  Images: </label>
-				<input type="file" name="bride_father_img">
+				<label for="">Family Mamber's  Images: </label>
+				<input type="file" name="bride_father_img" >
 			</div>
 			<div class="form-group">
-				<label for="">Bride's Mothers's Name: </label>
-				<input type="text" name="bride_mother_name" class="form-control">
+				<label for="">Family Mamber's Name: </label>
+				<input type="text" name="bride_mother_name" class="form-control" value="<?php if(isset($bride_mother_name)) echo $bride_mother_name;?>">
 			</div>
 			<div class="form-group">
-				<label for="">Bride's Mothers's  Images: </label>
+				<label for="">Family Mamber's  Images: </label>
 				<input type="file" name="bride_mother_img">
 			</div>
 			<b  class="mb-1" id="btn-less-family" onclick="btn_less_family()"> <i class="fa fa-minus"></i> Less Family</b>
@@ -398,11 +369,11 @@ require("user_header.php");
 			
 			<div class="form-group">
 				<label for="">Email: </label>
-				<input type="eamil" name="email" class="form-control" >
+				<input type="eamil" name="email" class="form-control" value="<?php if(isset($email)) echo $email;?>">
 			</div>
 			<div class="form-group">
 				<label for="">Phone Number: </label>
-				<input type="text" name="number" class="form-control" >
+				<input type="text" name="number" class="form-control" value="<?php if(isset($number)) echo $number;?>">
 			</div>
 			<button type="submit" name="submit_info" class="btn btn-primary">Submit</button>
                 </form>
