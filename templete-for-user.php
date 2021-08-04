@@ -1,5 +1,6 @@
 <?php
 
+error_reporting(0);
 require("../session.php");
 
 $con=mysqli_connect("localhost", "root", "", "wedding_invi");
@@ -11,7 +12,6 @@ $form_rows = mysqli_fetch_assoc($InfoSQL);
 
 $time = $form_rows['m_time'].intval($form_rows['m_time']) < 12 ? 'AM' : 'PM';
 
-echo $wedImg = $form_rows['wee_imgs'];
 
  if($form_rows['reception'] == "Yes" ){ 
     $rec = '<div class="col-md-4">
@@ -39,6 +39,10 @@ echo $wedImg = $form_rows['wee_imgs'];
     </div>';
     }
 
+//show weeding images
+ $wedingImg = $form_rows['wee_imgs'];
+
+$wedingImg = explode(',' , $wedingImg);
 
 
 echo '<!DOCTYPE html>
@@ -93,7 +97,7 @@ echo '<!DOCTYPE html>
                             <p>'.$form_rows['m_date'].'</p>
                         </div>
 
-                        <h1>'.$form_rows['g_name'].' <span>&</span> '.$form_rows['g_name'].'</h1>
+                        <h1>'.$form_rows['g_name'].' <span>&</span> '.$form_rows['b_name'].'</h1>
 
                         <p class="getting">ARE GETTING MARRIED!</p>
 
@@ -148,7 +152,7 @@ echo '<!DOCTYPE html>
                     <div class="col-md-4">
                         <div class="userfield text-center">
                             <img src="info-img/'.$form_rows['b_img'].'">
-                            <h3>'.$form_rows['g_name'].'</h3>
+                            <h3>'.$form_rows['b_name'].'</h3>
                             <p>( S/o Mr. Pradeep & Mrs. vani )</p>
                             <p class="major">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by</p>
 
@@ -255,32 +259,20 @@ echo '<!DOCTYPE html>
                     <img src="img/pot1.png">
                 </div>
                 <div class="col-md-12" style="margin-top: 35px;">
-                    <div class="wedd_gal">
-                        <div class="column">
-                            <img src="img/2.jpg" style="width:100%">
-                            <img src="img/6.jpg" style="width:100%">
-                            <img src="img/8.jpg" style="width:100%">
-                            <img src="img/15.jpg" style="width:100%">
-                        </div>
-                        <div class="column">
-                            <img src="img/3.jpg" style="width:100%">
-                            <img src="img/4.jpg" style="width:100%">
-                            <img src="img/7.jpg" style="width:100%">
-                            <img src="img/14.jpg" style="width:100%">
-                        </div>
-                        <div class="column">
-                            <img src="img/9.jpg" style="width:100%">
-                            <img src="img/10.jpg" style="width:100%">
-                            <img src="img/12.jpg" style="width:100%">
-                            <img src="img/16.jpg" style="width:100%">
-                        </div>
-                        <div class="column">
-                            <img src="img/5.jpg" style="width:100%">
-                            <img src="img/11.jpg" style="width:100%">
-                            <img src="img/13.jpg" style="width:100%">
-                            <img src="img/1.jpg" style="width:100%">
-                        </div>
-                    </div>
+                    <div class="wedd_gal">';?>
+
+<?php 
+
+                  
+                   foreach($wedingImg as $value){
+                    
+                        echo ' <div class="column"><img src="info-img/'.$value.'"></div>';
+                      
+                   }
+ ?>        
+ 
+ 
+                      <?php  echo '</div>
                 </div>
             </div>
     </section>
@@ -293,12 +285,27 @@ echo '<!DOCTYPE html>
                 <div class="col-md-12 text-center">
                     <h1>LOVABLE FAMILY</h1>
                     <img src="img/pot1.png" class="pot1">
+                    
                 </div>
 
                 <div class="col-md-12">
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <div class="move_sign">
-                            <img src="img/carous.png" style="    width: 87%;">
+                        <img src="info-img/'.$form_rows['g_img'].'" style=" width: 100px;
+                        border-radius: 94%;
+                        height: 100px;
+                        flex: 50%;">
+                        <img src="info-img/'.$form_rows['b_img'].'" style=" width: 100px;
+                        border-radius: 94%;
+                        height: 100px;
+                        flex: 50%;">
+                        <div class="border" style="border: 2px solid #fff;
+                        width: 70%;
+                        flex: 87%;
+                        float: left;
+                        overflow: hidden;
+                        position: absolute;
+                        margin-top: -58px;    margin-left: 19%;"></div>
                             <a class="right carousel-control" href="#myCarousel" data-slide="next">
                                 <span class="fa fa-angle-right"></span>
                                 <span class="sr-only">Next</span>
@@ -312,7 +319,7 @@ echo '<!DOCTYPE html>
                             <div class="item active">
                                 <div class="col-md-3">
                                     <div class="invite text-center">
-                                        <img src="img/c1.png">
+                                        <img style="height: 107px;border-radius: 100%;" src="info-img/'.$form_rows['family_g_father_img'].'">
                                         <h2> </h2>
                                         <p> </p>
                                         <ul>
@@ -327,7 +334,7 @@ echo '<!DOCTYPE html>
 
                                 <div class="col-md-3">
                                     <div class="invite text-center">
-                                        <img src="img/c2.png">
+                                    <img style="height: 107px;border-radius: 100%;" src="info-img/'.$form_rows['family_g_mother_img'].'">
                                         <h2> </h2>
                                         <p> </p>
                                         <ul>
@@ -340,7 +347,7 @@ echo '<!DOCTYPE html>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="invite text-center">
-                                        <img src="img/c3.png">
+                                    <img style="height: 107px;border-radius: 100%;" src="info-img/'.$form_rows['family_b_father_img'].'">
                                         <h2> </h2>
                                         <p> </p>
                                         <ul>
@@ -353,7 +360,7 @@ echo '<!DOCTYPE html>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="invite text-center">
-                                        <img src="img/c4.png">
+                                    <img style="height: 107px;border-radius: 100%;" src="info-img/'.$form_rows['family_b_mother_img'].'">
                                         <h2> </h2>
                                         <p> </p>
                                         <ul>
@@ -366,61 +373,7 @@ echo '<!DOCTYPE html>
                                 </div>
                             </div>
 
-                            <div class="item">
-                                <div class="col-md-3">
-                                    <div class="invite text-center">
-                                        <img src="img/c1.png">
-                                        <h2> </h2>
-                                        <p> </p>
-                                        <ul>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-instagram"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
-                                        </ul>
-
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-3">
-                                    <div class="invite text-center">
-                                        <img src="img/c2.png">
-                                        <h2> </h2>
-                                        <p> </p>
-                                        <ul>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-instagram"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
-                                        </ul>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="invite text-center">
-                                        <img src="img/c3.png">
-                                        <h2> </h2>
-                                        <p> </p>
-                                        <ul>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-instagram"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
-                                        </ul>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="invite text-center">
-                                        <img src="img/c4.png">
-                                        <h2> </h2>
-                                        <p> </p>
-                                        <ul>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-instagram"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
-                                        </ul>
-
-                                    </div>
-                                </div>
+                          
                             </div>
                         </div>
                     </div>
@@ -453,7 +406,7 @@ echo '<!DOCTYPE html>
                                     </div>
                                     <div class="detail">
                                         <h4>Email</h4>
-                                        <p>mymarriageinvitation.com@gmail.com
+                                        <p>'.$form_rows['email'].'
                                         </p>
                                     </div>
                                 </div>
@@ -465,7 +418,7 @@ echo '<!DOCTYPE html>
                                     </div>
                                     <div class="detail">
                                         <h4>Phone</h4>
-                                        <p>+91 630 950 2137 </p>
+                                        <p>'.$form_rows['phone'].' </p>
                                     </div>
                                 </div>
                             </li>

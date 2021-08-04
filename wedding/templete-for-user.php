@@ -1,4 +1,50 @@
-<!DOCTYPE html>
+<?php
+
+require("../session.php");
+
+$con=mysqli_connect("localhost", "root", "", "wedding_invi");
+
+$user_id=$_SESSION['isloginid'];
+
+$InfoSQL = mysqli_query($con, "SELECT * FROM tamplate_info WHERE user_id = '$user_id' ");
+$form_rows = mysqli_fetch_assoc($InfoSQL);
+
+$time = $form_rows['m_time'].intval($form_rows['m_time']) < 12 ? 'AM' : 'PM';
+
+
+ if($form_rows['reception'] == "Yes" ){ 
+    $rec = '<div class="col-md-4">
+        <div class="userfield invite text-center">
+
+            <h3>Reception <span></span></h3>
+            <p> 23/05/2022 10:00 Am Onwards</p>
+            <h4 class="fs15 fw600 lh26">At Home,<br> West Godavari,AP.</h4>
+
+            <p class="fs15">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some <a href="javascript:void(0)"> Red More...</a></p>
+
+        </div>
+    </div>';
+    }else{ 
+        $Vindhu = '<div class="col-md-4">
+        <div class="userfield invite text-center">
+
+            <h3>Vindhu <span></span></h3>
+            <p> 23/05/2022 11:30 Am Onwards</p>
+            <h4 class="fs15 fw600 lh26">At Home,<br> West Godavari,AP.</h4>
+
+            <p class="fs15">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some <a href="javascript:void(0)"> Red More...</a></p>
+
+        </div>
+    </div>';
+    }
+
+//show weeding images
+ $wedingImg = $form_rows['wee_imgs'];
+
+$wedingImg = explode(',' , $wedingImg);
+
+
+echo '<!DOCTYPE html>
 
 <html lang="en">
 
@@ -23,11 +69,11 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <img src="info-img/35-3429unnamed.jpg" style="width:100%">
+                    <img src="info-img/'.$form_rows['slider_img1'].'" style="width:100%">
                 </div>
 
                 <div class="item">
-                    <img src="info-img/35-34291.jpg" style="width:100%">
+                    <img src="info-img/'.$form_rows['slider_img2'].'" style="width:100%">
                 </div>
 
             </div>
@@ -47,10 +93,10 @@
                         <img src="img/oval.png">
                         <div class="text">
                             <h3>Save the Date</h3>
-                            <p>2000-02-02</p>
+                            <p>'.$form_rows['m_date'].'</p>
                         </div>
 
-                        <h1>nayon <span>&</span> Mim</h1>
+                        <h1>'.$form_rows['g_name'].' <span>&</span> '.$form_rows['b_name'].'</h1>
 
                         <p class="getting">ARE GETTING MARRIED!</p>
 
@@ -76,8 +122,8 @@
                 <div class="col-md-12">
                     <div class="col-md-4">
                         <div class="userfield text-center">
-                            <img src="img/user1.png">
-                            <h3>Manshi <span>Solanki</span></h3>
+                            <img src="info-img/'.$form_rows['g_img'].'">
+                            <h3>'.$form_rows['g_name'].'</h3>
                             <p>( D/o Mr. Prakash & Mrs. Shanti )</p>
                             <p class="major">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by</p>
 
@@ -93,8 +139,8 @@
 
                             <h3>INVITATION</h3>
                             <p>We inviting you and your family on</p>
-                            <h4>FRIDAY</h4>
-                            <p class="jan_n">21 May 2022</p>
+                            <h4>'.$form_rows['m_day'].'</h4>
+                            <p class="jan_n">'.$form_rows['m_date'].'</p>
                             <p>Mymarriage Convention Hall,West Godavari,AP.</p>
 
                         </div>
@@ -104,8 +150,8 @@
                     </div>
                     <div class="col-md-4">
                         <div class="userfield text-center">
-                            <img src="img/user2.png">
-                            <h3>Harun <span> Gupta</span></h3>
+                            <img src="info-img/'.$form_rows['b_img'].'">
+                            <h3>'.$form_rows['b_name'].'</h3>
                             <p>( S/o Mr. Pradeep & Mrs. vani )</p>
                             <p class="major">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by</p>
 
@@ -182,7 +228,7 @@
                         <div class="userfield invite text-center">
 
                             <h3>Marriage<span></span></h3>
-                            <p> 21/05/2022 09:30 Pm</p>
+                            <p> '.$form_rows['m_date'].' '.$form_rows['m_time'].' '.$time.'</p>
                             <h4 class="fs15 fw600 lh26">Mymarriage Convention Hall,<br> West Godavari,AP</h4>
 
                             <p class="fs15">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some <a href="javascript:void(0)"> Red More...</a></p>
@@ -192,28 +238,14 @@
                     <div class="col-md-4">
                         <img src="img/1.png" class="invi_img">
                     </div>
-                    <div class="col-md-4">
-                        <div class="userfield invite text-center">
 
-                            <h3>Reception <span></span></h3>
-                            <p> 23/05/2022 10:00 Am Onwards</p>
-                            <h4 class="fs15 fw600 lh26">At Home,<br> West Godavari,AP.</h4>
 
-                            <p class="fs15">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some <a href="javascript:void(0)"> Red More...</a></p>
+                    //if recption and
+                  '. $rec .'
+                  // Vindhu shown
+                  '. $Vindhu .'
 
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="userfield invite text-center">
 
-                            <h3>Vindhu <span></span></h3>
-                            <p> 23/05/2022 11:30 Am Onwards</p>
-                            <h4 class="fs15 fw600 lh26">At Home,<br> West Godavari,AP.</h4>
-
-                            <p class="fs15">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some <a href="javascript:void(0)"> Red More...</a></p>
-
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -226,32 +258,20 @@
                     <img src="img/pot1.png">
                 </div>
                 <div class="col-md-12" style="margin-top: 35px;">
-                    <div class="wedd_gal">
-                        <div class="column">
-                            <img src="img/2.jpg" style="width:100%">
-                            <img src="img/6.jpg" style="width:100%">
-                            <img src="img/8.jpg" style="width:100%">
-                            <img src="img/15.jpg" style="width:100%">
-                        </div>
-                        <div class="column">
-                            <img src="img/3.jpg" style="width:100%">
-                            <img src="img/4.jpg" style="width:100%">
-                            <img src="img/7.jpg" style="width:100%">
-                            <img src="img/14.jpg" style="width:100%">
-                        </div>
-                        <div class="column">
-                            <img src="img/9.jpg" style="width:100%">
-                            <img src="img/10.jpg" style="width:100%">
-                            <img src="img/12.jpg" style="width:100%">
-                            <img src="img/16.jpg" style="width:100%">
-                        </div>
-                        <div class="column">
-                            <img src="img/5.jpg" style="width:100%">
-                            <img src="img/11.jpg" style="width:100%">
-                            <img src="img/13.jpg" style="width:100%">
-                            <img src="img/1.jpg" style="width:100%">
-                        </div>
-                    </div>
+                    <div class="wedd_gal">';?>
+
+<?php 
+
+                  
+                   foreach($wedingImg as $value){
+                    
+                        echo ' <div class="column"><img src="info-img/'.$value.'"></div>';
+                      
+                   }
+ ?>        
+ 
+ 
+                      <?php  echo '</div>
                 </div>
             </div>
     </section>
@@ -264,12 +284,27 @@
                 <div class="col-md-12 text-center">
                     <h1>LOVABLE FAMILY</h1>
                     <img src="img/pot1.png" class="pot1">
+                    
                 </div>
 
                 <div class="col-md-12">
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <div class="move_sign">
-                            <img src="img/carous.png" style="    width: 87%;">
+                        <img src="info-img/'.$form_rows['g_img'].'" style=" width: 100px;
+                        border-radius: 94%;
+                        height: 100px;
+                        flex: 50%;">
+                        <img src="info-img/'.$form_rows['b_img'].'" style=" width: 100px;
+                        border-radius: 94%;
+                        height: 100px;
+                        flex: 50%;">
+                        <div class="border" style="border: 2px solid #fff;
+                        width: 70%;
+                        flex: 87%;
+                        float: left;
+                        overflow: hidden;
+                        position: absolute;
+                        margin-top: -58px;    margin-left: 19%;"></div>
                             <a class="right carousel-control" href="#myCarousel" data-slide="next">
                                 <span class="fa fa-angle-right"></span>
                                 <span class="sr-only">Next</span>
@@ -283,7 +318,7 @@
                             <div class="item active">
                                 <div class="col-md-3">
                                     <div class="invite text-center">
-                                        <img src="img/c1.png">
+                                        <img style="height: 107px;border-radius: 100%;" src="info-img/'.$form_rows['family_g_father_img'].'">
                                         <h2> </h2>
                                         <p> </p>
                                         <ul>
@@ -298,7 +333,7 @@
 
                                 <div class="col-md-3">
                                     <div class="invite text-center">
-                                        <img src="img/c2.png">
+                                    <img style="height: 107px;border-radius: 100%;" src="info-img/'.$form_rows['family_g_mother_img'].'">
                                         <h2> </h2>
                                         <p> </p>
                                         <ul>
@@ -311,7 +346,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="invite text-center">
-                                        <img src="img/c3.png">
+                                    <img style="height: 107px;border-radius: 100%;" src="info-img/'.$form_rows['family_b_father_img'].'">
                                         <h2> </h2>
                                         <p> </p>
                                         <ul>
@@ -324,7 +359,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="invite text-center">
-                                        <img src="img/c4.png">
+                                    <img style="height: 107px;border-radius: 100%;" src="info-img/'.$form_rows['family_b_mother_img'].'">
                                         <h2> </h2>
                                         <p> </p>
                                         <ul>
@@ -337,61 +372,7 @@
                                 </div>
                             </div>
 
-                            <div class="item">
-                                <div class="col-md-3">
-                                    <div class="invite text-center">
-                                        <img src="img/c1.png">
-                                        <h2> </h2>
-                                        <p> </p>
-                                        <ul>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-instagram"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
-                                        </ul>
-
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-3">
-                                    <div class="invite text-center">
-                                        <img src="img/c2.png">
-                                        <h2> </h2>
-                                        <p> </p>
-                                        <ul>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-instagram"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
-                                        </ul>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="invite text-center">
-                                        <img src="img/c3.png">
-                                        <h2> </h2>
-                                        <p> </p>
-                                        <ul>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-instagram"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
-                                        </ul>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="invite text-center">
-                                        <img src="img/c4.png">
-                                        <h2> </h2>
-                                        <p> </p>
-                                        <ul>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-instagram"></i></a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
-                                        </ul>
-
-                                    </div>
-                                </div>
+                          
                             </div>
                         </div>
                     </div>
@@ -424,7 +405,7 @@
                                     </div>
                                     <div class="detail">
                                         <h4>Email</h4>
-                                        <p>mymarriageinvitation.com@gmail.com
+                                        <p>'.$form_rows['email'].'
                                         </p>
                                     </div>
                                 </div>
@@ -436,7 +417,7 @@
                                     </div>
                                     <div class="detail">
                                         <h4>Phone</h4>
-                                        <p>+91 630 950 2137 </p>
+                                        <p>'.$form_rows['phone'].' </p>
                                     </div>
                                 </div>
                             </li>
@@ -480,3 +461,6 @@
 </body>
 
 </html>
+';
+
+?>

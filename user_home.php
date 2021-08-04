@@ -1,6 +1,8 @@
 <?php
 require("session.php");
 require("user_header.php");
+require("config.php");
+$user_id=$_SESSION['isloginid'];
 ?>
 
         <!-- Setting Panel -->
@@ -71,7 +73,43 @@ require("user_header.php");
 						<div class="hk-row">
 							<div class="col-lg-7">
 								
-								<div class="hk-row">							
+								<div class="hk-row">
+								<?php 
+										$InfoSQL = mysqli_query($con, "SELECT * FROM tamplate_info WHERE user_id = '$user_id' ");
+										$form_rows = mysqli_fetch_assoc($InfoSQL);
+										$gFirstName = $form_rows['g_name'];
+										$gFirstName = explode(' ' , $gFirstName);
+										$gFirstName = $gFirstName[0];
+
+										$bFirstName = $form_rows['b_name'];
+										$bFirstName = explode(' ' , $bFirstName);
+										$bFirstName = $bFirstName[0];
+
+										if($form_rows['status'] == 'Active'){
+										
+									?>
+									<div class="col-md-6 col-sm-6">
+                                    <a target= "_blank" href="<?php echo "wedding/$gFirstName.weding.$bFirstName.php"?>">
+										<div class="card card-sm">
+											<div class="card-body" style="border:2px solid green; box-shadow:1px 2px 3px;">
+												<div class="d-flex justify-content-between mb-5">
+													<div>
+														<span class="d-block font-15 text-dark font-weight-500">You site is ready</span>
+													</div>
+													<div>
+														<span class="badge badge-success badge-pill" id="delivered"></span>
+													</div>
+												</div>
+												<div>
+													<span class="d-block display-5 text-dark mb-5">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img width="20%" src="https://static.vecteezy.com/system/resources/thumbnails/000/575/973/small/icon0-vector-437-01.jpg"></span>
+                                                    <small class="d-block">Your side is ready. <b>"Click"</b> for love visit</small>
+												</div>
+											</div>
+										</div>
+									</a>
+									</div>
+
+                                  <?php } ?>							
 									<div class="col-md-6 col-sm-6">
                                      <a href="user.php">
 										<div class="card card-sm">
@@ -152,8 +190,7 @@ require("user_header.php");
 										</div>
 									</a>
 									</div>
-									<div class="col-md-3 col-sm-3">
-									</div>
+								
 									<div class="col-md-6 col-sm-6">
                                     <a href="send_invitation.php">
 										<div class="card card-sm">
@@ -174,8 +211,7 @@ require("user_header.php");
 										</div>
 									</a>
 									</div>
-									<div class="col-md-3 col-sm-3">
-									</div>
+									
 								</div>	
 							</div>
 						</div>
