@@ -79,7 +79,7 @@ $user_id=$_SESSION['isloginid'];
 										$form_rows = mysqli_fetch_assoc($InfoSQL);
 										$gFirstName = $form_rows['g_name'];
 										$gFirstName = explode(' ' , $gFirstName);
-										$gFirstName = $gFirstName[0];
+										$gFirstName = $user_id.$gFirstName[0];
 
 										$bFirstName = $form_rows['b_name'];
 										$bFirstName = explode(' ' , $bFirstName);
@@ -89,7 +89,7 @@ $user_id=$_SESSION['isloginid'];
 										
 									?>
 									<div class="col-md-6 col-sm-6">
-                                    <a target= "_blank" href="<?php echo "wedding/$gFirstName.weding.$bFirstName.php"?>">
+                                    <a target= "_blank" href="<?php echo "wedding/$gFirstName-weding-$bFirstName"?>">
 										<div class="card card-sm">
 											<div class="card-body" style="border:2px solid green; box-shadow:1px 2px 3px;">
 												<div class="d-flex justify-content-between mb-5">

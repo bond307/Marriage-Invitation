@@ -170,6 +170,11 @@
     font-weight: 400;
 }
 
+.userfield img {
+    height: 384px;
+    border-radius: 20px;
+}
+
 img {
     width: 100%;
 }
@@ -360,6 +365,25 @@ img {
 
 .carousel-inner img {
     width: 57%;
+    border-radius: 100%;
+    height: 100px;
+}
+
+.carousel-inner>.item>a>img,
+.carousel-inner>.item>img {
+    border-radius: 0px;
+}
+
+.border {
+    border: 2px solid #fff;
+    width: 70%;
+    flex: 87%;
+    float: left;
+    overflow: hidden;
+    position: absolute;
+    margin-top: -58px;
+    margin-left: 19%;
+    display: block;
 }
 
 .wedd_gal {
@@ -384,6 +408,13 @@ img {
     margin-top: 23px;
     vertical-align: middle;
     width: 100%;
+}
+
+.img-footer {
+    width: 100px;
+    border-radius: 94%;
+    height: 100px;
+    flex: 50%;
 }
 
 

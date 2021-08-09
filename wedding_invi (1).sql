@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2021 at 10:19 PM
+-- Generation Time: Aug 09, 2021 at 06:18 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -116,7 +116,7 @@ INSERT INTO `payment_details` (`id`, `user_id`, `user_name`, `user_permission`, 
 (1118, 32, 'ravi', 0, '', '', '', 0.00, 0, '', '', ''),
 (1119, 33, 'anu', 0, '', '', '', 0.00, 0, '', '', ''),
 (1120, 34, 'Sudha', 4, 'IM 010 (English)', 'uploads/demo.jpg', 'https://mymarriageinvitation.com/wedding/', 299.00, 1, '202144', 'hemakumar_weds_sudha', '18-07-2021,18:59:15'),
-(1121, 35, 'nayon', 0, 'IM 011 (English)', 'uploads/demo_1.jpg', 'https://mymarriageinvitation.com/demo_1/', 199.00, 0, '202150', '', '');
+(1121, 35, 'nayon', 0, 'IM 011 (English)', 'uploads/demo_1.jpg', 'https://mymarriageinvitation.com/demo_1/', 199.00, 1, '202152', '', '');
 
 -- --------------------------------------------------------
 
@@ -207,7 +207,22 @@ CREATE TABLE `tamplate_info` (
   `lunc_date` mediumtext NOT NULL,
   `lunc_time` varchar(255) NOT NULL,
   `lunc_ven` varchar(255) NOT NULL,
-  `wee_imgs` varchar(255) NOT NULL,
+  `wed_img1` varchar(255) NOT NULL,
+  `wed_img2` varchar(255) NOT NULL,
+  `wed_img3` varchar(255) NOT NULL,
+  `wed_img4` varchar(255) NOT NULL,
+  `wed_img5` varchar(255) NOT NULL,
+  `wed_img6` varchar(255) NOT NULL,
+  `wed_img7` varchar(255) NOT NULL,
+  `wed_img8` varchar(255) NOT NULL,
+  `wed_img9` varchar(255) NOT NULL,
+  `wed_img10` varchar(255) NOT NULL,
+  `wed_img11` varchar(255) NOT NULL,
+  `wed_img12` varchar(255) NOT NULL,
+  `wed_img13` varchar(255) NOT NULL,
+  `wed_img14` varchar(255) NOT NULL,
+  `wed_img15` varchar(255) NOT NULL,
+  `wed_img16` varchar(255) NOT NULL,
   `family_g_father_name` varchar(255) NOT NULL,
   `family_g_father_img` varchar(255) NOT NULL,
   `family_g_mother_name` varchar(255) NOT NULL,
@@ -216,6 +231,14 @@ CREATE TABLE `tamplate_info` (
   `family_b_father_img` varchar(255) NOT NULL,
   `family_b_mother_name` varchar(255) NOT NULL,
   `family_b_mother_img` varchar(255) NOT NULL,
+  `family1_name` varchar(255) NOT NULL,
+  `family1_img` varchar(255) NOT NULL,
+  `family2_name` varchar(255) NOT NULL,
+  `family2_img` varchar(255) NOT NULL,
+  `family3_name` varchar(255) NOT NULL,
+  `family3_img` varchar(255) NOT NULL,
+  `family4_name` varchar(255) NOT NULL,
+  `family4_img` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
   `user_id` varchar(255) NOT NULL,
@@ -227,9 +250,9 @@ CREATE TABLE `tamplate_info` (
 -- Dumping data for table `tamplate_info`
 --
 
-INSERT INTO `tamplate_info` (`id`, `g_name`, `g_img`, `b_name`, `b_img`, `slider_img1`, `slider_img2`, `m_date`, `m_time`, `m_day`, `m_vnu`, `reception`, `rec_date`, `rec_time`, `rec_ven`, `lunc_date`, `lunc_time`, `lunc_ven`, `wee_imgs`, `family_g_father_name`, `family_g_father_img`, `family_g_mother_name`, `family_g_mother_img`, `family_b_father_name`, `family_b_father_img`, `family_b_mother_name`, `family_b_mother_img`, `email`, `phone`, `user_id`, `tem_id`, `status`) VALUES
-(41, 'nayon', '35-3429profile_logo_OHEPB_8b0c185030160188698076ff619b8a76.jpg', 'Mim', '35-3429img8.jpg', '35-3429unnamed.jpg', '35-34291.jpg', '2000-02-02', '01:00', 'Friday', 'nn', 'Yes', '2000-02-02', '11:00', 'nn', '2000-02-02', '11:11', 'dasf', '35-3429photo-1505771215590-c5fa0aec29b8.jfif,', 'Nasiar Talukder', '35-3429profile_logo_OHEPB_8b0c185030160188698076ff619b8a76.jpg', 'Najma Beg', '35-3429falcon-coolway-sport-briar-pipe-red-matte-rustic-a.jpg', 'Shomun', '35-3429a8923fa6c51f8c0f88b3e7317fe4513f.jpg_340x340q80.jpg_.webp', 'Sewsfs', '35-falcon-coolway-sport-briar-pipe-red-matte-rustic-a.jpg', 'c@gmail.com', '1234567890', '332', 'demo_1', 'Active'),
-(44, 'Nayon Talukder', '35-8835', 'Mim ', '35-8835img6.jpg', '35-8835img1.jpg', '35-8835unnamed.jpg', '20202-12-12', '00:12', 'Friday', 'nn', 'Yes', '2020-12-12', '00:12', 'nn', '2020-12-12', '00:12', 'dd', '35_8835unnamed.jpg-', 'Nasiar Talukder', '35-8835img8.jpg', 'Najma Beg', '35-8835photo-1505771215590-c5fa0aec29b8.jfif', 'Shomun', '35-8835img8.jpg', 'Sewsfs', '35-photo-1505771215590-c5fa0aec29b8.jfif', 'c@gmail.com', '1234567890', '35', 'demo_1', 'Active');
+INSERT INTO `tamplate_info` (`id`, `g_name`, `g_img`, `b_name`, `b_img`, `slider_img1`, `slider_img2`, `m_date`, `m_time`, `m_day`, `m_vnu`, `reception`, `rec_date`, `rec_time`, `rec_ven`, `lunc_date`, `lunc_time`, `lunc_ven`, `wed_img1`, `wed_img2`, `wed_img3`, `wed_img4`, `wed_img5`, `wed_img6`, `wed_img7`, `wed_img8`, `wed_img9`, `wed_img10`, `wed_img11`, `wed_img12`, `wed_img13`, `wed_img14`, `wed_img15`, `wed_img16`, `family_g_father_name`, `family_g_father_img`, `family_g_mother_name`, `family_g_mother_img`, `family_b_father_name`, `family_b_father_img`, `family_b_mother_name`, `family_b_mother_img`, `family1_name`, `family1_img`, `family2_name`, `family2_img`, `family3_name`, `family3_img`, `family4_name`, `family4_img`, `email`, `phone`, `user_id`, `tem_id`, `status`) VALUES
+(52, 'nayon', '35-2061img3.jpg', 'Emu', '35-2061img2.jpg', '35-2061img1.jpg', '35-2061unnamed.jpg', '2020-12-12', '01:00', 'Wednesday', 'Mymarriage Convention Hall,West Godavari,AP.', 'No', '', '', '', '2020-10-10', '11:11', 'AT HOME, WEST GODAVARI,AP.', '35-2061img8 - Copy.jpg', '35-2061img5.jpg', '35-2061img3.jpg', '35-2061img2.jpg', '35-2061img7.jpg', '35-2061img6 - Copy.jpg', ' ', ' ', ' ', '35-2061img7 - Copy.jpg', ' ', ' ', ' ', ' ', ' ', ' ', 'Nasiar Talukder', '35-2061profile_logo_OHEPB_8b0c185030160188698076ff619b8a76.jpg', 'Najma Beg', '35-2061img7 - Copy.jpg', 'Brother ', '35-2061img3.jpg', 'Sister', '35-img7 - Copy.jpg', 'Brther', '35-2061img2.jpg', 'Sister', '35-2061img5 - Copy.jpg', 'sala', '35-2061img6.jpg', 'sali', '35-2061img7 - Copy.jpg', 'c@gmail.com', '1234567890', '353', 'demo_1', 'Active'),
+(53, 'Nayon ', '35-4538user2.png', 'Mim', '35-4538user1.png', '35-4538slider1.jpg', '35-4538slider3.jpg', '2020-11-11', '11:11', 'Tuesday', 'Mymarriage Convention Hall,West Godavari,AP.', 'No', '', '', '', '2020-11-11', '11:11', 'AT HOME, WEST GODAVARI,AP.', '35-453816.jpg', '35-45389.jpg', '35-453810.jpg', '35-453815.jpg', '35-453811.jpg', '35-453814.jpg', '35-453815.jpg', '35-453810.jpg', '35-453811.jpg', '35-453814.jpg', '35-45388.jpg', '35-45381.jpg', '', '', '', '', 'Nasiar Talukder', '35-4538c1.png', 'Najma Beg', '35-4538c3.png', 'Brother ', '35-4538c3.png', 'dsfdsaf', '35-c3.png', 'Brther', '35-4538c1.png', 'Sister', '35-4538c4.png', 'sala', '35-4538c2.png', 'sali', '35-4538c3.png', 'freelancer4747@gmail.com', '01814569747', '35', 'demo_1', 'Active');
 
 -- --------------------------------------------------------
 
@@ -335,7 +358,7 @@ ALTER TABLE `send`
 -- AUTO_INCREMENT for table `tamplate_info`
 --
 ALTER TABLE `tamplate_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `tbl_products`
